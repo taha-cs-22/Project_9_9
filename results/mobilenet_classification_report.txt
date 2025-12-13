@@ -1,0 +1,15 @@
+                    precision    recall  f1-score   support
+
+   Black Sea Sprat     1.0000    0.9933    0.9967       150
+   Gilt-Head Bream     0.9934    1.0000    0.9967       150
+   Hourse Mackerel     1.0000    1.0000    1.0000       150
+        Red Mullet     1.0000    0.9667    0.9831       150
+     Red Sea Bream     1.0000    1.0000    1.0000       150
+          Sea Bass     0.9933    0.9933    0.9933       150
+            Shrimp     1.0000    1.0000    1.0000       150
+Striped Red Mullet     0.9677    1.0000    0.9836       150
+             Trout     1.0000    1.0000    1.0000       150
+
+          accuracy                         0.9948      1350
+         macro avg     0.9949    0.9948    0.9948      1350
+      weighted avg     0.9949    0.9948    0.9948      1350
