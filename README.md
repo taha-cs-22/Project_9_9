@@ -133,5 +133,3 @@ This project demonstrates the effectiveness of convolutional neural networks in 
 - Evaluate the MobileNet model (mobilenet_model.h5) on the test set to get performance metrics:
 - python code/evaluation_mobilenet.py
 - This will output accuracy, precision, recall, F1-score, and a confusion matrix.
-
- 
