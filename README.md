@@ -105,32 +105,33 @@ This project demonstrates the effectiveness of convolutional neural networks in 
 
 ## Instructions on How to Run the Code
 1. **Install required packages**  
--pip install tensorflow keras pillow matplotlib numpy
+- pip install tensorflow keras pillow matplotlib numpy
 
 2. **Prepare the dataset**  
 - Download the dataset from [Kaggle: A Large Scale Fish Dataset](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset).  
 - Extract the downloaded archive. The folder `Fish_Dataset/` will be included in the extracted files.  
-- Place the `Fish_Dataset/` folder into the root of the project
-
-
-1. **Preprocess the dataset**  
+- Place the `Fish_Dataset/` folder into the root of the project.
+  
+3. **Preprocess the dataset**  
 - Run the preprocessing script to generate the structured dataset in `dataset_ready/`:
 - python code/data_pre.py
     
-1. **Optional cleaning / organization**  
-- Run the data cleaning script if needed:
+4. **Cleaning / organization**  
+- Run the data cleaning script :
 - python code/data_cleaning.py
   
-1. **Explore the dataset**  
+5. **Explore the dataset**  
 - Run the exploratory data analysis script to view image statistics and sample images:
 - python code/eda.py
   
-1. **Evaluate the baselin model**  
+6. **Evaluate the baselin model**  
 - Evaluate the baseline model (baseline_model.h5) on the test set to get performance metrics:
 - python code/evaluate_baseline.py
 - This will output accuracy, precision, recall, F1-score, and a confusion matrix.
   
-1. **Evaluate the transfer learning (MobileNet)**  
+7. **Evaluate the transfer learning (MobileNet)**  
 - Evaluate the MobileNet model (mobilenet_model.h5) on the test set to get performance metrics:
 - python code/evaluation_mobilenet.py
 - This will output accuracy, precision, recall, F1-score, and a confusion matrix.
+
+ 
