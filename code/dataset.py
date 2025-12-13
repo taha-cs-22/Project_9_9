@@ -43,3 +43,5 @@ def create_generators(dataset_dir):
     )
     
     return train_gen, val_gen, test_gen
+
+print("Dataset generators created successfully.")
