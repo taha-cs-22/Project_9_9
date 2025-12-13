@@ -1,0 +1,32 @@
+# Dataset directories
+dataset_ready/
+Fish_Dataset/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+ml-env/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Model files (optional - uncomment if you don't want to track large model files)
+# *.h5
+# *.pkl
+# *.joblib
