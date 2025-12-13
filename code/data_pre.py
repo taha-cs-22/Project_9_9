@@ -3,7 +3,7 @@ import shutil
 import random
 from pathlib import Path
 
-SOURCE_DIR = "Fish_Dataset/Fish_Dataset"
+SOURCE_DIR = "Fish_Dataset"
 OUTPUT_DIR = "dataset_ready"
 
 TRAIN_RATIO = 0.7
