@@ -1,135 +1,176 @@
 # Fish Species Recognition Using Convolutional Neural Networks
 
-## Overview
-This project focuses on recognizing and classifying fish species from images using a Convolutional Neural Network (CNN). The goal is to build an image classification model capable of identifying different fish species based on visual characteristics such as shape, color patterns, fins, and scales.
+## Project Description
+This project focuses on recognizing and classifying fish species from images using Convolutional Neural Networks (CNNs). The system implements two different approaches:
 
-The project serves as an applied example of deep learning in computer vision and demonstrates how CNNs can be used in real-world ecological and commercial applications.
+1. **Baseline CNN Model**: A custom CNN architecture built from scratch
+2. **Transfer Learning Model**: Using MobileNet pretrained on ImageNet for improved performance
 
-## Motivation and Significance
-Automated fish species recognition has practical importance in several domains, including:
+The project classifies 9 different fish species:
+- Black Sea Sprat
+- Gilt-Head Bream  
+- Horse Mackerel
+- Red Mullet
+- Red Sea Bream
+- Sea Bass
+- Shrimp
+- Striped Red Mullet
+- Trout
 
-- Monitoring marine biodiversity
-- Supporting fisheries management and sustainability
-- Assisting ecological and environmental research
-- Helping conservation programs track vulnerable or overfished species
-- Providing educational tools for marine biology and ecology
-
-By automating the identification process, this approach reduces manual effort and increases accuracy and scalability.
-
-## Applications
-Potential applications of this project include:
-
-- Marine biodiversity monitoring systems
-- Automated fish sorting and quality control in fish markets
-- Educational software for species identification
-- Conservation and environmental monitoring programs
-- Research on fish populations and habitats
+The models achieve high accuracy in fish species identification and can be deployed through a Streamlit web application for real-time inference.
 
 ## Dataset
-The model can be trained using publicly available fish image datasets, such as:
+The project uses the **A Large Scale Fish Dataset** from Kaggle, which contains thousands of fish images across multiple species.
 
-- Fish species classification datasets from Kaggle
-- Academic datasets from marine biology research
-- Custom datasets collected from fish markets or underwater cameras
+**Dataset Link**: [Kaggle: A Large Scale Fish Dataset](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset)
 
-A typical dataset split is:
+**Dataset Structure**:
+- **Training set**: 70%
+- **Validation set**: 15% 
+- **Test set**: 15%
 
-- **Training set:** 70%
-- **Validation set:** 15%
-- **Test set:** 15%
+Images are preprocessed to 128×128 pixels and normalized for training.
 
-## Methodology
+## How to Install Dependencies
 
-### Model Architecture
-The project uses a CNN designed to capture fine-grained visual features. A typical architecture includes:
+Install all required packages using pip:
 
-- Convolutional layers with ReLU activation
-- Max pooling layers for spatial reduction
-- Fully connected (dense) layers for classification
-- Dropout layers to reduce overfitting
-- A Softmax output layer for multi-class classification
+```bash
+pip install -r requirements.txt
+```
 
-The network is implemented using **TensorFlow/Keras**.
+Or install individual packages:
 
-### Data Preprocessing
-Before training, images undergo several preprocessing steps:
+```bash
+pip install tensorflow keras pillow matplotlib numpy scikit-learn seaborn streamlit
+```
 
-- Resizing to a fixed resolution (e.g., 128 × 128)
-- Normalizing pixel values to the range [0, 1]
-- Data augmentation to improve generalization, including:
-  - Rotation and horizontal flipping
-  - Zooming and shifting
-  - Brightness and contrast adjustments
+## Dataset Setup and Preprocessing
 
-### Training
-Key training settings include:
+1. **Download and prepare the dataset**:
+   - Download the dataset from the Kaggle link above
+   - Extract the downloaded archive
+   - Place the `Fish_Dataset/` folder in the project root directory
 
-- **Optimizer:** Adam
-- **Loss function:** Categorical Cross-Entropy
-- **Batch size:** 32–64
-- **Number of epochs:** 20–40
-- Early stopping to prevent overfitting
-- Model checkpointing to save the best model
+2. **Preprocess the dataset**:
+   ```bash
+   python code/data_pre.py
+   ```
 
-### Evaluation
-Model performance is evaluated using:
+3. **Clean the dataset** (remove corrupted images):
+   ```bash
+   python code/data_cleaning.py
+   ```
 
-- Overall classification accuracy
-- Precision, recall, and F1-score for each species
-- Confusion matrix to analyze misclassifications
+4. **Explore the dataset** (generate visualizations and statistics):
+   ```bash
+   python code/eda.py
+   ```
 
-These metrics help identify strengths and weaknesses of the model, especially for visually similar species.
+## How to Run Training Scripts
 
-## Challenges and Future Improvements
+### Train Baseline Model
+```bash
+python code/train_baseline.py
+```
 
-**Common challenges include:**
+### Train MobileNet Transfer Learning Model  
+```bash
+python code/train_mobilenet.py
+```
 
-- High visual similarity between certain fish species
-- Variations in lighting, background, and image quality
-- Partial occlusion in underwater or market images
+### Train Both Models (Alternative)
+```bash
+python code/train.py
+```
 
-**Possible improvements:**
+Training will:
+- Use early stopping to prevent overfitting
+- Save the best model weights automatically
+- Generate training history for analysis
+- Save models to `saved_model/` directory
 
-- Applying transfer learning using pretrained models such as ResNet, MobileNet, or EfficientNet
-- Increasing dataset size and diversity
-- Performing fish segmentation before classification
-- Hyperparameter tuning and deeper architectures
+## How to Run Evaluation
 
-## Conclusion
-This project demonstrates the effectiveness of convolutional neural networks in classifying fish species from images. With improved datasets and more advanced models, the system can be extended for real-world deployment in ecological monitoring, fisheries management, and market automation.
+### Evaluate Baseline Model
+```bash
+python code/evaluate_baseline.py
+```
 
-## References
-- Fish species classification datasets (Kaggle and academic sources)
-- Research papers on CNN-based fish recognition
-- TensorFlow and Keras official documentation
+### Evaluate MobileNet Model
+```bash
+python code/evaluation_mobilenet.py
+```
 
-## Instructions on How to Run the Code
-1. **Install required packages**  
-- pip install tensorflow keras pillow matplotlib numpy
+Evaluation outputs:
+- Classification accuracy
+- Precision, recall, and F1-score per class
+- Confusion matrix visualization
+- Detailed classification report
 
-2. **Prepare the dataset**  
-- Download the dataset from [Kaggle: A Large Scale Fish Dataset](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset).  
-- Extract the downloaded archive. The folder `Fish_Dataset/` will be included in the extracted files.  
-- Place the `Fish_Dataset/` folder into the root of the project.
-  
-3. **Preprocess the dataset**  
-- Run the preprocessing script to generate the structured dataset in `dataset_ready/`:
-- python code/data_pre.py
-    
-4. **Cleaning / organization**  
-- Run the data cleaning script :
-- python code/data_cleaning.py
-  
-5. **Explore the dataset**  
-- Run the exploratory data analysis script to view image statistics and sample images:
-- python code/eda.py
-  
-6. **Evaluate the baselin model**  
-- Evaluate the baseline model (baseline_model.h5) on the test set to get performance metrics:
-- python code/evaluate_baseline.py
-- This will output accuracy, precision, recall, F1-score, and a confusion matrix.
-  
-7. **Evaluate the transfer learning (MobileNet)**  
-- Evaluate the MobileNet model (mobilenet_model.h5) on the test set to get performance metrics:
-- python code/evaluation_mobilenet.py
-- This will output accuracy, precision, recall, F1-score, and a confusion matrix.
+## How to Load Saved Models for Inference
+
+### Using Python Script
+```python
+import tensorflow as tf
+import numpy as np
+from PIL import Image
+
+# Load the trained model
+model = tf.keras.models.load_model("saved_model/mobilenet_model.h5")
+
+# Load and preprocess an image
+image = Image.open("path/to/fish_image.jpg").convert("RGB")
+image = image.resize((128, 128))
+img_array = np.array(image) / 255.0
+img_array = np.expand_dims(img_array, axis=0)
+
+# Make prediction
+predictions = model.predict(img_array)
+predicted_class_idx = np.argmax(predictions)
+
+# Class names
+CLASS_NAMES = [
+    "Black Sea Sprat", "Gilt-Head Bream", "Hourse Mackerel",
+    "Red Mullet", "Red Sea Bream", "Sea Bass", "Shrimp",
+    "Striped Red Mullet", "Trout"
+]
+
+print(f"Predicted species: {CLASS_NAMES[predicted_class_idx]}")
+print(f"Confidence: {np.max(predictions)*100:.2f}%")
+```
+
+### Using Streamlit Web Application
+```bash
+streamlit run app.py
+```
+
+This launches a web interface where you can:
+- Upload fish images
+- Get real-time predictions
+- View confidence scores
+- See top-3 predictions
+
+## Project Structure
+```
+├── code/
+│   ├── data_pre.py          # Dataset preprocessing
+│   ├── data_cleaning.py     # Remove corrupted images
+│   ├── eda.py              # Exploratory data analysis
+│   ├── dataset.py          # Data generators
+│   ├── model.py            # Model architectures
+│   ├── train_baseline.py   # Train baseline CNN
+│   ├── train_mobilenet.py  # Train MobileNet model
+│   ├── evaluate_baseline.py    # Evaluate baseline model
+│   └── evaluation_mobilenet.py # Evaluate MobileNet model
+├── saved_model/
+│   ├── baseline_model.h5   # Trained baseline model
+│   └── mobilenet_model.h5  # Trained MobileNet model
+├── results/                # Training results and plots
+├── app.py                 # Streamlit web application
+├── requirements.txt       # Python dependencies
+└── README.md             # This file
+```
+
+## Model Performance
+The MobileNet transfer learning model typically achieves higher accuracy compared to the baseline CNN due to leveraging pretrained ImageNet features. Detailed performance metrics are generated during evaluation and saved in the `results/` directory.
